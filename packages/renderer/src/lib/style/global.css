@@ -10,6 +10,7 @@
   --accent-secondary: #0ddbd1;
   --accent-secondary-dark: #044b47;
 }
+
 body {
   display: flex;
   height: 100vh;
@@ -52,7 +53,8 @@ body {
 .icon-button {
   background: transparent;
   border: none;
-  line-height: 0.5;
+  /* line-height: 0.5; */
+  font-size: 2rem;
   cursor: pointer;
   color: var(--accent);
 }
