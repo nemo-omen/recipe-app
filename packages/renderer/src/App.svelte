@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Icon from './lib/components/Icon.svelte';
-  import './lib/style/global.css';
+  import Icon from '$lib/components/Icon.svelte';
+  import '$lib/style/global.css';
 
   let expanded = false;
 
