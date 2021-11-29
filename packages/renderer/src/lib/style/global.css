@@ -1,12 +1,22 @@
 :root {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
     'Helvetica Neue', sans-serif;
+
+  /* Colors */
+  --dark: #010b13;
+  --light: #f5ecec;
+  --accent: #db4e0d;
+  --accent-dark: #742906;
+  --accent-secondary: #0ddbd1;
+  --accent-secondary-dark: #044b47;
 }
 body {
   display: flex;
   height: 100vh;
   padding: 0;
   margin: 0;
+  background-color: var(--dark);
+  color: var(--light);
 }
 
 #sidebar {
@@ -19,7 +29,7 @@ body {
   align-items: center;
   width: 2rem;
   padding: 0.5rem;
-  border-right: 1px solid #010101;
+  border-right: 1px solid var(--accent-dark);
 }
 
 #sidebar-menu {
@@ -36,7 +46,7 @@ body {
   width: unset;
   min-width: 20vw;
   padding: 0.5rem;
-  border-right: 1px solid #010101;
+  border-right: 1px solid var(--accent-dark);
 }
 
 .icon-button {
@@ -44,6 +54,7 @@ body {
   border: none;
   line-height: 0.5;
   cursor: pointer;
+  color: var(--accent);
 }
 
 main {
