@@ -7,7 +7,10 @@ module.exports = defineConfig({
     browser: true,
     node: false
   },
-  extends: ['eslint:recommended'],
+  plugins: [
+    'prettier'
+  ],
+  extends: ['eslint:recommended', 'prettier'],
   parserOptions: {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 12,
