@@ -9,6 +9,7 @@
   import Shopping from '$lib/pages/Shopping.svelte';
   import Loading from '$lib/pages/Loading.svelte';
   import Settings from '$lib/pages/Settings.svelte';
+  import PostRecipe from '$lib/pages/PostRecipe.svelte';
 
   $: current = $menuService.context.currentMenu;
 </script>
@@ -33,6 +34,8 @@
       <Shopping />
     {:else if $menuService.context.currentMenu === 'settings'}
       <Settings />
+    {:else if $menuService.context.currentMenu === 'postrecipe'}
+      <PostRecipe />
     {:else}
       <Loading />
     {/if}

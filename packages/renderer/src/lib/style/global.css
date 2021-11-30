@@ -63,6 +63,7 @@ header {
   display: flex;
   gap: 1rem;
   align-items: center;
+  font-size: 1.25rem;
 }
 
 .page-heading h2 {
@@ -124,6 +125,14 @@ header {
 .icon-control-button {
   font-size: 1.5rem;
   padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--accent-secondary-mid);
+  transition: color 0.3s ease-out;
+}
+
+.icon-control-button:hover {
+  color: var(--accent-secondary);
 }
 
 input[type='text'] {

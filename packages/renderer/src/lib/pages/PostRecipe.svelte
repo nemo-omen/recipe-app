@@ -1,0 +1,12 @@
+<script>
+  import Icon from '$lib/components/Icon.svelte';
+</script>
+
+<div id="content-header" class="sub-header">
+  <div class="page-heading">
+    <Icon name="add" />
+    <h2>New Recipe</h2>
+  </div>
+</div>
+
+<div class="page-content" />
