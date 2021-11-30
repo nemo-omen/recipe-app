@@ -11,17 +11,33 @@
   --accent: #ff6347;
   --accent-secondary: #34b5cc;
   --accent-dark: #742906;
-  /* --accent-secondary: #14cfc6; */
-  --accent-secondary-dark: #044b47;
+  --accent-secondary-mid: #0b708a;
+  --accent-secondary-dark: #0c495c;
 }
 
 body {
-  display: flex;
   height: 100vh;
   padding: 0;
   margin: 0;
   background-color: var(--dark);
   color: var(--light);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--accent-secondary-dark);
+}
+
+#brand {
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+#content {
+  display: flex;
+  min-height: 100%;
 }
 
 #sidebar {
@@ -31,14 +47,13 @@ body {
 #sidebar-icons {
   display: flex;
   flex-direction: column;
-  width: 3rem;
+  width: 4rem;
   overflow: hidden;
-  border-right: 1px solid var(--accent-dark);
+  border-right: 1px solid var(--accent-secondary-dark);
 }
 
 .expanded {
-  min-width: 20vw;
-  width: 100%;
+  min-width: 20ch;
   border-right: 1px solid var(--accent-dark);
 }
 
@@ -51,21 +66,23 @@ body {
   background: transparent;
   border: none;
   cursor: pointer;
-  color: var(--accent);
-  min-height: 3rem;
-  max-height: 3rem;
-  font-size: 2rem;
+  color: var(--accent-secondary-mid);
+  min-height: 2rem;
+  max-height: 2rem;
+  font-size: 1rem;
+  padding: 0.5rem;
   transition: all 0.3s ease-out;
   overflow: hidden;
 }
 
-.icon-button:hover {
+.icon-button:hover,
+.current {
   color: var(--accent-secondary);
   background-color: var(--dark-hover);
 }
 
 .icon-button .button-label {
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 main {
@@ -74,33 +91,17 @@ main {
   margin: 0 auto;
 }
 
-img {
-  height: 16rem;
-  width: 16rem;
+input[type='text'] {
+  background-color: var(--dark-hover);
+  border: 1px solid var(--accent-secondary-dark);
+  color: var(--accent-secondary-mid);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
 }
 
-h1 {
-  color: #ff3e00;
-  text-transform: uppercase;
-  font-size: 4rem;
-  font-weight: 100;
-  line-height: 1.1;
-  margin: 2rem auto;
-  max-width: 14rem;
-}
-
-p {
-  max-width: 14rem;
-  margin: 1rem auto;
-  line-height: 1.35;
-}
-
-@media (min-width: 480px) {
-  h1 {
-    max-width: none;
-  }
-
-  p {
-    max-width: none;
-  }
+input[type='text']:focus {
+  outline: 1px solid var(--accent-secondary-dark);
+  color: var(--accent-secondary);
+  outline-offset: -1px;
+  background-color: var(--dark);
 }
