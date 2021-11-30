@@ -21,6 +21,7 @@
 
 body {
   height: 100vh;
+  overflow: hidden;
   padding: 0;
   margin: 0;
   background-color: var(--dark);
@@ -29,6 +30,7 @@ body {
 
 main {
   width: 100%;
+  overflow-y: auto;
 }
 
 #content-header {
@@ -54,7 +56,7 @@ header {
 
 #content {
   display: flex;
-  min-height: 100%;
+  height: 100%;
 }
 
 .page-heading {

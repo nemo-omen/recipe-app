@@ -37,6 +37,8 @@ const createWindow = async () => {
     },
   });
 
+  mainWindow.title = 'Knifework';
+
   /**
    * If you install `show: true` then it can cause issues when trying to close the window.
    * Use `show: false` and listener events `ready-to-show` to fix these issues.
