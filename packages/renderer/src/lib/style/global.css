@@ -6,10 +6,12 @@
 
   /* Colors */
   --dark: #010b13;
+  --dark-hover: #03121f;
   --light: #f5ecec;
-  --accent: #db4e0d;
+  --accent: #ff6347;
+  --accent-secondary: #34b5cc;
   --accent-dark: #742906;
-  --accent-secondary: #0ddbd1;
+  /* --accent-secondary: #14cfc6; */
   --accent-secondary-dark: #044b47;
 }
 
@@ -29,36 +31,41 @@ body {
 #sidebar-icons {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 2rem;
-  padding: 0.5rem;
+  width: 3rem;
+  overflow: hidden;
   border-right: 1px solid var(--accent-dark);
 }
 
-#sidebar-menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0;
-  width: 0;
-  overflow: hidden;
-  padding: 0.5rem 0;
-}
-
 .expanded {
-  width: unset;
   min-width: 20vw;
-  padding: 0.5rem;
+  width: 100%;
   border-right: 1px solid var(--accent-dark);
 }
 
 .icon-button {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
   background: transparent;
   border: none;
-  /* line-height: 0.5; */
-  font-size: 2rem;
   cursor: pointer;
   color: var(--accent);
+  min-height: 3rem;
+  max-height: 3rem;
+  font-size: 2rem;
+  transition: all 0.3s ease-out;
+  overflow: hidden;
+}
+
+.icon-button:hover {
+  color: var(--accent-secondary);
+  background-color: var(--dark-hover);
+}
+
+.icon-button .button-label {
+  font-size: 1.5rem;
 }
 
 main {

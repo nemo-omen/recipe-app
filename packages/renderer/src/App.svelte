@@ -11,15 +11,22 @@
 </script>
 
 <aside id="sidebar">
-  <div id="sidebar-icons">
+  <div id="sidebar-icons" class={expanded ? 'expanded' : ''}>
     <button class="icon-button" on:click={toggleMenu}>
-      <Icon name="menu" />
+      <Icon name="book" /> <span class="button-label">Recipes</span>
     </button>
-  </div>
-  <div id="sidebar-menu" class={expanded ? 'expanded' : ''}>
-    <details class="menu-item">
-      <summary> Ingredients </summary>
-    </details>
+    <button class="icon-button" on:click={toggleMenu}>
+      <Icon name="measuring" /> <span class="button-label">Ingredients</span>
+    </button>
+    <!-- <button class="icon-button" on:click={toggleMenu}>
+      <Icon name="pantry" /> <span class="button-label">Pantry</span>
+    </button> -->
+    <button class="icon-button" on:click={toggleMenu}>
+      <Icon name="pot" /> <span class="button-label">Equipment</span>
+    </button>
+    <button class="icon-button" on:click={toggleMenu}>
+      <Icon name="cart" /> <span class="button-label">Shopping List</span>
+    </button>
   </div>
 </aside>
 <main>
