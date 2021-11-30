@@ -47,7 +47,7 @@ header {
 #sidebar-icons {
   display: flex;
   flex-direction: column;
-  width: 4rem;
+  width: 2rem;
   overflow: hidden;
   border-right: 1px solid var(--accent-secondary-dark);
 }
