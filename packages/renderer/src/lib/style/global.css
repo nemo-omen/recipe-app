@@ -6,8 +6,12 @@
 
   /* Colors */
   --dark: #010b13;
+  --dark-mid: #041624;
+  --dark-light: #091f30;
   --dark-hover: #03121f;
   --light: #f5ecec;
+  --light-mid: #ddd6d6;
+  --light-dark: #c5bebe;
   --accent: #ff6347;
   --accent-secondary: #34b5cc;
   --accent-dark: #742906;

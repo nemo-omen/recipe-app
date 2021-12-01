@@ -14,8 +14,8 @@
     console.log('userSettings', userSettings);
   });
 
-  function gotoSettings() {
-    menuService.send({ type: 'GO', key: 'settings' });
+  function gotoPage(page) {
+    menuService.send({ type: 'GO', key: page });
   }
 
   onMount(() => {
@@ -36,15 +36,18 @@
     </div>
     <h1 id="intro-heading">Knifework</h1>
     <div class="three-up">
-      <div class="card">
+      <button class="card card-welcome" on:click={() => gotoPage('recipes')}>
+        <Icon name="book" />
         <h3>Recipes</h3>
-      </div>
-      <div class="card card-flat">
+      </button>
+      <button class="card card-welcome" on:click={() => gotoPage('postrecipe')}>
+        <Icon name="add" />
         <h3>New Recipe</h3>
-      </div>
-      <div class="card">
+      </button>
+      <button class="card card-welcome" on:click={() => gotoPage('shopping')}>
+        <Icon name="cart" />
         <h3>Shopping</h3>
-      </div>
+      </button>
     </div>
   </div>
 {/if}
@@ -69,24 +72,31 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2rem;
     margin-top: 3rem;
-    background: vae(--accent-secondary-dark);
   }
 
   .card {
-    /* border: 1px solid var(--accent-secondary-mid); */
-    /* background: var(--dark-hover); */
-    color: var(--accent-secondary-mid);
+    border: none;
+    background: var(--dark-mid);
+    color: var(--light-mid);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 1rem;
-    transition: color 0.3s ease-out;
+    transition: all 0.3s ease-out;
   }
   .card:hover {
-    border-color: var(--accent-secondary);
-    color: var(--accent-secondary);
+    color: var(--light);
+    background: var(--dark-light);
+  }
+
+  .card-welcome {
+    font-size: 3rem;
+  }
+
+  .card-welcome h3 {
+    font-size: 1.5rem;
   }
 
   .card-flat {
