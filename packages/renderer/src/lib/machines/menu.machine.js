@@ -16,6 +16,11 @@ const menuMachine = createMachine(
             }),
             target: 'expanded',
           },
+          GO: {
+            actions: assign({
+              currentMenu: (context, event) => (context.currentMenu = event?.key),
+            }),
+          },
         },
       },
       expanded: {
@@ -33,6 +38,11 @@ const menuMachine = createMachine(
               }),
             },
           ],
+          GO: {
+            actions: assign({
+              currentMenu: (context, event) => (context.currentMenu = event?.key),
+            }),
+          },
         },
       },
     },

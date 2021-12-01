@@ -25,17 +25,6 @@
   // window.electron.dataResponse('response', (event, data) => {
   //   console.log(data);
   // });
-
-  let userSettings;
-
-  window.electron.userSettingsResponse('userSettingsResponse', (event, data) => {
-    userSettings = data;
-    console.log(userSettings);
-  });
-
-  onMount(() => {
-    userSettings = window.electron.getUserSettings();
-  });
 </script>
 
 <header>

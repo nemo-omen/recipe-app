@@ -5,17 +5,12 @@ const apiKey = 'electron';
  * @see https://github.com/electron/electron/issues/21437#issuecomment-573522360
  */
 const api: ElectronApi = {
-  // 'electron',
   versions: process.versions,
-  // send: (data) => ipcRenderer.send('toMain', data),
-  // fromMain: (channel, fn) => {
-  //   ipcRenderer.on(channel, fn);
-  // },
-  // getData: (request) => ipcRenderer.send('request', request),
   userSettingsResponse: (channel, fn) => {
     ipcRenderer.on(channel, fn);
   },
   getUserSettings: () => ipcRenderer.send('getUserSettings'),
+  setUserSettings: (data) => ipcRenderer.send('setUserSettings', data),
 };
 
 /**

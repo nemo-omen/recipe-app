@@ -2,6 +2,7 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
 import { URL } from 'url';
 import * as fs from 'fs';
+const settings = require('electron-settings');
 
 const isSingleInstance = app.requestSingleInstanceLock();
 
@@ -14,24 +15,12 @@ if (!isSingleInstance) {
 
 app.disableHardwareAcceleration();
 
-// Install "Vue.js devtools"
-if (import.meta.env.MODE === 'development') {
-  app
-    .whenReady()
-    .then(() => import('electron-devtools-installer'))
-    .then(({ default: installExtension, VUEJS3_DEVTOOLS }) =>
-      installExtension(VUEJS3_DEVTOOLS, {
-        loadExtensionOptions: {
-          allowFileAccess: true,
-        },
-      }),
-    )
-    .catch((e) => console.error('Failed install extension:', e));
-}
-
 let mainWindow: BrowserWindow | null = null;
+let devTools: BrowserWindow | null = null;
 
 const createWindow = async () => {
+  devTools = new BrowserWindow({ width: 400, height: 600 });
+
   mainWindow = new BrowserWindow({
     show: false, // Use 'ready-to-show' event to show window
     webPreferences: {
@@ -39,11 +28,12 @@ const createWindow = async () => {
       preload: join(__dirname, '../../preload/dist/index.cjs'),
       nodeIntegration: false,
       contextIsolation: true,
-      enableRemoteModule: false,
+      enableRemoteModule: true,
     },
   });
 
   mainWindow.title = 'Knifework';
+  mainWindow.webContents.setDevToolsWebContents(devTools.webContents);
 
   /**
    * If you install `show: true` then it can cause issues when trying to close the window.
@@ -55,8 +45,15 @@ const createWindow = async () => {
     mainWindow?.show();
 
     if (import.meta.env.MODE === 'development') {
-      mainWindow?.webContents.openDevTools();
+      mainWindow?.webContents.openDevTools({ mode: 'detach' });
+      const windowBounds = mainWindow.getBounds();
+      devTools.setPosition(windowBounds.x + windowBounds.width, windowBounds.y);
     }
+  });
+
+  mainWindow.on('move', () => {
+    const windowBounds = mainWindow.getBounds();
+    devTools.setPosition(windowBounds.x + windowBounds.width, windowBounds.y);
   });
 
   /**
@@ -102,36 +99,13 @@ if (import.meta.env.PROD) {
 
 // IPC Events
 
-// ipcMain.on('toMain', (event, data) => {
-//   console.log(data);
-//   event.sender.send('something', data);
-// });
-
-const dummyData = {
-  123: {
-    id: 123,
-    name: 'Keto Crackers',
-    servings: 6,
-    prepTime: 20,
-    cookTime: 40,
-  },
-  456: {
-    id: 456,
-    name: 'Endless Amounts of Cheese',
-    servings: 200,
-    prepTime: 0,
-    cookTime: 0,
-  },
-};
-
-// ipcMain.on('request', (event, data) => {
-//   const { id } = data;
-//   event.sender.send('response', dummyData[id]);
-// });
-
 ipcMain.on('getUserSettings', (event) => {
-  let rawUserData = fs.readFileSync(settingsPath);
-  const userData = JSON.parse(rawUserData);
+  const userData = settings.getSync('userSettings') || false;
   console.log('userData: ', userData);
   event.sender.send('userSettingsResponse', userData);
+});
+
+ipcMain.on('setUserSettings', (event, data) => {
+  const userData = data;
+  console.log('recieved userData: ', userData);
 });
