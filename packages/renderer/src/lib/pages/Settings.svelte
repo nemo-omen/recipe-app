@@ -12,7 +12,7 @@
   }
 </script>
 
-<div id="content-header" class="sub-header">
+<div id="content-header" class="sub-header content-sub">
   <div class="page-heading">
     <Icon name="settings" />
     <h2>Settings</h2>

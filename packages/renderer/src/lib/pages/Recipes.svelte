@@ -8,7 +8,7 @@
   }
 </script>
 
-<div id="content-header" class="sub-header">
+<div id="content-header" class="sub-header content-sub">
   <div class="page-heading">
     <Icon name="book" />
     <h2>Recipes</h2>
