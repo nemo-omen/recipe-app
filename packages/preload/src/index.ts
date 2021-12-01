@@ -13,7 +13,6 @@ const api: ElectronApi = {
     ipcRenderer.on(channel, fn);
   },
   getUserSettings: () => ipcRenderer.send('getUserSettings'),
-  getDBMode: () => ipcRenderer.send('getDBMode'),
   setUserSettings: (key, value) => ipcRenderer.send('setUserSettings', key, value),
 };
 

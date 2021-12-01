@@ -99,10 +99,10 @@ if (import.meta.env.PROD) {
 
 // IPC Events
 
-ipcMain.on('getDBMode', (event) => {
-  const dbMode = settings.getSync('dbMode');
-  console.log('dbMode: ', dbMode);
-  event.sender.send('dbModeResponse', { dbMode });
+ipcMain.on('getUserSettings', (event) => {
+  const userSettings = settings.getSync('userSettings');
+  console.log('userSettings: ', userSettings);
+  event.sender.send('userSettingsResponse', { userSettings });
 });
 
 ipcMain.on('setUserSettings', (event, key, value) => {

@@ -6,11 +6,12 @@
   import Icon from '$lib/components/Icon.svelte';
 
   let userSettings;
+  $: loaded = false;
   $: settings = userSettings;
 
   window.electron.userSettingsResponse('userSettingsResponse', (event, data) => {
     userSettings = data;
-    console.log(userSettings);
+    console.log('userSettings', userSettings);
   });
 
   function gotoSettings() {
@@ -22,17 +23,31 @@
     if (userSettings) {
       menuService.send({ type: 'GO', key: userSettings.lastPage });
     }
+    setTimeout(() => {
+      loaded = true;
+    }, 200);
   });
 </script>
 
-<div id="intro" class="center">
-  <div id="intro-icon" in:fade>
-    <Icon name="knife" />
+{#if loaded}
+  <div id="intro" class="center" in:fade>
+    <div id="intro-icon" in:fade>
+      <Icon name="knife" />
+    </div>
+    <h1 id="intro-heading">Knifework</h1>
+    <div class="three-up">
+      <div class="card">
+        <h3>Recipes</h3>
+      </div>
+      <div class="card card-flat">
+        <h3>New Recipe</h3>
+      </div>
+      <div class="card">
+        <h3>Shopping</h3>
+      </div>
+    </div>
   </div>
-  <h1 id="intro-heading">Knifework</h1>
-  <p>Knifework needs to set some things up</p>
-  <button class="callout-button" on:click={gotoSettings}>Let's Get Started!</button>
-</div>
+{/if}
 
 <style>
   #intro {
@@ -47,6 +62,36 @@
   #intro-heading {
     font-size: 3rem;
     font-weight: 400;
+  }
+
+  .three-up {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    margin-top: 3rem;
+    background: vae(--accent-secondary-dark);
+  }
+
+  .card {
+    /* border: 1px solid var(--accent-secondary-mid); */
+    /* background: var(--dark-hover); */
+    color: var(--accent-secondary-mid);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    transition: color 0.3s ease-out;
+  }
+  .card:hover {
+    border-color: var(--accent-secondary);
+    color: var(--accent-secondary);
+  }
+
+  .card-flat {
+    background: var(--dark);
+    box-shadow: none;
   }
 
   p,

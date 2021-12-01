@@ -8,7 +8,7 @@
   import Ingredients from '$lib/pages/Ingredients.svelte';
   import Equipment from '$lib/pages/Equipment.svelte';
   import Shopping from '$lib/pages/Shopping.svelte';
-  import Loading from '$lib/pages/Loading.svelte';
+  import Welcome from '$lib/pages/Welcome.svelte';
   import Settings from '$lib/pages/Settings.svelte';
   import PostRecipe from '$lib/pages/PostRecipe.svelte';
 
@@ -50,7 +50,7 @@
     {:else if $menuService.context.currentMenu === 'postrecipe'}
       <PostRecipe />
     {:else}
-      <Loading />
+      <Welcome />
     {/if}
   </main>
 </section>
