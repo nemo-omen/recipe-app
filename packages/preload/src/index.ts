@@ -1,11 +1,20 @@
-import { contextBridge } from 'electron';
+import { contextBridge, ipcRenderer } from 'electron';
 
 const apiKey = 'electron';
 /**
  * @see https://github.com/electron/electron/issues/21437#issuecomment-573522360
  */
 const api: ElectronApi = {
+  // 'electron',
   versions: process.versions,
+  send: (data) => ipcRenderer.send('toMain', data),
+  fromMain: (channel, fn) => {
+    ipcRenderer.on(channel, fn);
+  },
+  getData: (request) => ipcRenderer.send('request', request),
+  dataResponse: (channel, fn) => {
+    ipcRenderer.on(channel, fn);
+  },
 };
 
 /**

@@ -8,3 +8,7 @@
     <h2>Settings</h2>
   </div>
 </div>
+
+<div class="page-content">
+  <h2>Data Settings</h2>
+</div>

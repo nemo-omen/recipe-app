@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import '$lib/style/global.css';
   import { menuService } from '$lib/machines/menu.machine.js';
   import Icon from '$lib/components/Icon.svelte';
@@ -12,10 +12,22 @@
   import PostRecipe from '$lib/pages/PostRecipe.svelte';
 
   $: current = $menuService.context.currentMenu;
+
+  function sendToMain() {
+    window.electron.getData({ id: 456 });
+  }
+
+  window.electron.fromMain('something', (event, data) => {
+    console.log('From server: ' + data);
+  });
+
+  window.electron.dataResponse('response', (event, data) => {
+    console.log(data);
+  });
 </script>
 
 <header>
-  <div id="brand"><Icon name="knife" />Knifework</div>
+  <div id="brand" on:click={sendToMain}><Icon name="knife" />Knifework</div>
 
   <input type="text" placeholder="Search" />
 </header>

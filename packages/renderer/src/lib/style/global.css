@@ -33,6 +33,15 @@ main {
   overflow-y: auto;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
 #content-header {
   display: flex;
   justify-content: space-between;
@@ -120,6 +129,10 @@ header {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.page-content {
+  padding: 1rem;
 }
 
 .icon-control-button {

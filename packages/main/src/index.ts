@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
 import { URL } from 'url';
 
@@ -34,6 +34,9 @@ const createWindow = async () => {
     webPreferences: {
       nativeWindowOpen: true,
       preload: join(__dirname, '../../preload/dist/index.cjs'),
+      nodeIntegration: false,
+      contextIsolation: true,
+      enableRemoteModule: false,
     },
   });
 
@@ -93,3 +96,32 @@ if (import.meta.env.PROD) {
     .then(({ autoUpdater }) => autoUpdater.checkForUpdatesAndNotify())
     .catch((e) => console.error('Failed check updates:', e));
 }
+
+// IPC Events
+
+ipcMain.on('toMain', (event, data) => {
+  console.log(data);
+  event.sender.send('something', data);
+});
+
+const dummyData = {
+  123: {
+    id: 123,
+    name: 'Keto Crackers',
+    servings: 6,
+    prepTime: 20,
+    cookTime: 40,
+  },
+  456: {
+    id: 456,
+    name: 'Endless Amounts of Cheese',
+    servings: 200,
+    prepTime: 0,
+    cookTime: 0,
+  },
+};
+
+ipcMain.on('request', (event, data) => {
+  const { id } = data;
+  event.sender.send('response', dummyData[id]);
+});
