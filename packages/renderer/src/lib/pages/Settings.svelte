@@ -12,9 +12,7 @@
 
   function select(selectedMode) {
     mode = selectedMode;
-    if (mode === 'easy') {
-      window.electron.setUserSettings('dbMode', 'easy');
-    }
+    window.electron.setUserSettings('dbMode', selectedMode);
   }
 
   let dbModeSetting;
