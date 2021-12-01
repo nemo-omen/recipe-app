@@ -51,3 +51,5 @@ npm dev
 ## Notes:
 
 [Github action](https://github.com/marketplace/actions/electron-builder-action)
+
+[electron-json-storage](https://www.npmjs.com/package/electron-json-storage)
