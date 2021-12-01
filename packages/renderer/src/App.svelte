@@ -1,6 +1,7 @@
 <script>
   import '$lib/style/global.css';
   import { menuService } from '$lib/machines/menu.machine.js';
+  import { onMount } from 'svelte';
   import Icon from '$lib/components/Icon.svelte';
   import Sidebar from '$lib/components/Sidebar.svelte';
   import Recipes from '$lib/pages/Recipes.svelte';
@@ -14,15 +15,26 @@
   $: current = $menuService.context.currentMenu;
 
   function sendToMain() {
-    window.electron.getData({ id: 456 });
+    // window.electron.getData({ id: 456 });
   }
 
-  window.electron.fromMain('something', (event, data) => {
-    console.log('From server: ' + data);
+  // window.electron.fromMain('something', (event, data) => {
+  //   console.log('From server: ' + data);
+  // });
+
+  // window.electron.dataResponse('response', (event, data) => {
+  //   console.log(data);
+  // });
+
+  let userSettings;
+
+  window.electron.userSettingsResponse('userSettingsResponse', (event, data) => {
+    userSettings = data;
+    console.log(userSettings);
   });
 
-  window.electron.dataResponse('response', (event, data) => {
-    console.log(data);
+  onMount(() => {
+    userSettings = window.electron.getUserSettings();
   });
 </script>
 

@@ -3,6 +3,7 @@
   "author": "abchen",
   "description": "Vite Electron Boilerplate",
   "private": true,
+  "version": "0.0.1",
   "engines": {
     "node": ">=v14.16",
     "npm": ">=7.7"

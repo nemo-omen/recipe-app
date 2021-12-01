@@ -1,4 +1,9 @@
 <script>
-</script>
+  // import { onMount } from 'svelte';
 
-<h2>Loading</h2>
+  // let userSettings;
+
+  // onMount(() => {
+  //   userSettings = window.electron.send('getUserSettings');
+  // });
+</script>

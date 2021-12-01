@@ -1,8 +1,11 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
 import { URL } from 'url';
+import * as fs from 'fs';
 
 const isSingleInstance = app.requestSingleInstanceLock();
+
+const settingsPath = join(__dirname, '../../data/preferences.json');
 
 if (!isSingleInstance) {
   app.quit();
@@ -99,10 +102,10 @@ if (import.meta.env.PROD) {
 
 // IPC Events
 
-ipcMain.on('toMain', (event, data) => {
-  console.log(data);
-  event.sender.send('something', data);
-});
+// ipcMain.on('toMain', (event, data) => {
+//   console.log(data);
+//   event.sender.send('something', data);
+// });
 
 const dummyData = {
   123: {
@@ -121,7 +124,14 @@ const dummyData = {
   },
 };
 
-ipcMain.on('request', (event, data) => {
-  const { id } = data;
-  event.sender.send('response', dummyData[id]);
+// ipcMain.on('request', (event, data) => {
+//   const { id } = data;
+//   event.sender.send('response', dummyData[id]);
+// });
+
+ipcMain.on('getUserSettings', (event) => {
+  let rawUserData = fs.readFileSync(settingsPath);
+  const userData = JSON.parse(rawUserData);
+  console.log('userData: ', userData);
+  event.sender.send('userSettingsResponse', userData);
 });

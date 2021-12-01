@@ -7,14 +7,15 @@ const apiKey = 'electron';
 const api: ElectronApi = {
   // 'electron',
   versions: process.versions,
-  send: (data) => ipcRenderer.send('toMain', data),
-  fromMain: (channel, fn) => {
+  // send: (data) => ipcRenderer.send('toMain', data),
+  // fromMain: (channel, fn) => {
+  //   ipcRenderer.on(channel, fn);
+  // },
+  // getData: (request) => ipcRenderer.send('request', request),
+  userSettingsResponse: (channel, fn) => {
     ipcRenderer.on(channel, fn);
   },
-  getData: (request) => ipcRenderer.send('request', request),
-  dataResponse: (channel, fn) => {
-    ipcRenderer.on(channel, fn);
-  },
+  getUserSettings: () => ipcRenderer.send('getUserSettings'),
 };
 
 /**
