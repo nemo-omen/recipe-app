@@ -1,15 +1,35 @@
 <script>
   import Icon from '$lib/components/Icon.svelte';
+  import { onMount } from 'svelte';
 
-  $: mode = 'easy';
-  $: advanced = mode === 'easy';
+  let storageSettings;
 
   let sqlUser = '';
   let sqlPassword = '';
 
+  $: mode = 'easy';
+  $: notAdvanced = mode !== 'advanced';
+
   function select(selectedMode) {
     mode = selectedMode;
+    if (mode === 'easy') {
+      window.electron.setUserSettings('dbMode', 'easy');
+    }
   }
+
+  let dbModeSetting;
+
+  window.electron.dbModeResponse('dbModeResponse', (response, data) => {
+    if (data.dbMode) {
+      mode = data.dbMode;
+    } else {
+      mode = '';
+    }
+  });
+
+  onMount(() => {
+    window.electron.getDBMode();
+  });
 </script>
 
 <div id="content-header" class="sub-header content-sub">
@@ -29,17 +49,17 @@
     <h2>Advanced</h2>
     <p>Uses your local MySQL server</p>
     <label for="user">User</label>
-    <input disabled={advanced} type="text" name="user" id="user" bind:value={sqlUser} />
+    <input disabled={notAdvanced} type="text" name="user" id="user" bind:value={sqlUser} />
     <label for="password">Password</label>
-    <input disabled={advanced} type="text" name="password" id="password" bind:value={sqlPassword} />
-    <button disabled={advanced}>Save</button>
+    <input disabled={notAdvanced} type="text" name="password" id="password" bind:value={sqlPassword} />
+    <button disabled={notAdvanced}>Save</button>
   </div>
 </div>
 
 <style>
   p {
     text-align: center;
-    line-height: 1;
+    line-height: 1.5;
     margin: 0;
   }
 

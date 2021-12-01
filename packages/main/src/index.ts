@@ -99,13 +99,15 @@ if (import.meta.env.PROD) {
 
 // IPC Events
 
-ipcMain.on('getUserSettings', (event) => {
-  const userData = settings.getSync('userSettings') || false;
-  console.log('userData: ', userData);
-  event.sender.send('userSettingsResponse', userData);
+ipcMain.on('getDBMode', (event) => {
+  const dbMode = settings.getSync('dbMode');
+  console.log('dbMode: ', dbMode);
+  event.sender.send('dbModeResponse', { dbMode });
 });
 
-ipcMain.on('setUserSettings', (event, data) => {
-  const userData = data;
-  console.log('recieved userData: ', userData);
+ipcMain.on('setUserSettings', (event, key, value) => {
+  const data = { key, value };
+  console.log('recieved userData: ', data);
+  settings.setSync(key, value);
+  console.log('settings dbMode: ', settings.getSync('dbMode'));
 });

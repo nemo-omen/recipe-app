@@ -9,8 +9,12 @@ const api: ElectronApi = {
   userSettingsResponse: (channel, fn) => {
     ipcRenderer.on(channel, fn);
   },
+  dbModeResponse: (channel, fn) => {
+    ipcRenderer.on(channel, fn);
+  },
   getUserSettings: () => ipcRenderer.send('getUserSettings'),
-  setUserSettings: (data) => ipcRenderer.send('setUserSettings', data),
+  getDBMode: () => ipcRenderer.send('getDBMode'),
+  setUserSettings: (key, value) => ipcRenderer.send('setUserSettings', key, value),
 };
 
 /**
