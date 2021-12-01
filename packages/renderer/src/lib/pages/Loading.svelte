@@ -13,6 +13,10 @@
     console.log(userSettings);
   });
 
+  function gotoSettings() {
+    menuService.send({ type: 'GO', key: 'settings' });
+  }
+
   onMount(() => {
     userSettings = window.electron.getUserSettings();
     if (userSettings) {
@@ -22,24 +26,18 @@
 </script>
 
 <div id="intro" class="center">
-  <div id="intro-icon">
+  <div id="intro-icon" in:fade>
     <Icon name="knife" />
   </div>
   <h1 id="intro-heading">Knifework</h1>
   <p>Knifework needs to set some things up</p>
-  <button class="callout-button">Let's Get Started!</button>
+  <button class="callout-button" on:click={gotoSettings}>Let's Get Started!</button>
 </div>
 
 <style>
   #intro {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
     gap: 1rem;
     color: var(--accent);
-    padding-top: 15vh;
   }
 
   #intro-icon {
@@ -57,12 +55,17 @@
   }
 
   button {
-    background-color: var(--accent-secondary);
-    color: var(--dark);
+    border: 2px solid var(--accent-secondary);
+    color: var(--accent-secondary);
+    background: transparent;
     padding: 0.5rem 1rem;
-    border: none;
+    /* border: none; */
     border-radius: 5rem;
     font-weight: 600;
     cursor: pointer;
+    transition: transform 0.2s ease-out;
+  }
+  button:hover {
+    transform: scale(1.05);
   }
 </style>
