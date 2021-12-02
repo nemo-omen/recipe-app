@@ -30,29 +30,31 @@
   });
 </script>
 
-<div id="content-header" class="sub-header content-sub">
-  <div class="page-heading">
-    <Icon name="settings" />
-    <h2>Settings</h2>
+<section class="page">
+  <div id="content-header" class="sub-header content-sub">
+    <div class="page-heading">
+      <Icon name="settings" />
+      <h2>Settings</h2>
+    </div>
   </div>
-</div>
 
-<div class="center">
-  <div class="block-select {mode === 'easy' ? 'selected' : 'deselected'}" on:click={() => select('easy')}>
-    <h2>Easy</h2>
-    <p>Uses lightweight data storage backed by SQLite.</p>
-    <p>No setup required!</p>
+  <div class="center">
+    <div class="block-select {mode === 'easy' ? 'selected' : 'deselected'}" on:click={() => select('easy')}>
+      <h2>Easy</h2>
+      <p>Uses lightweight data storage backed by SQLite.</p>
+      <p>No setup required!</p>
+    </div>
+    <div class="block-select {mode === 'advanced' ? 'selected' : 'deselected'}" on:click={() => select('advanced')}>
+      <h2>Advanced</h2>
+      <p>Uses your local MySQL server</p>
+      <label for="user">User</label>
+      <input disabled={notAdvanced} type="text" name="user" id="user" bind:value={sqlUser} />
+      <label for="password">Password</label>
+      <input disabled={notAdvanced} type="text" name="password" id="password" bind:value={sqlPassword} />
+      <button disabled={notAdvanced}>Save</button>
+    </div>
   </div>
-  <div class="block-select {mode === 'advanced' ? 'selected' : 'deselected'}" on:click={() => select('advanced')}>
-    <h2>Advanced</h2>
-    <p>Uses your local MySQL server</p>
-    <label for="user">User</label>
-    <input disabled={notAdvanced} type="text" name="user" id="user" bind:value={sqlUser} />
-    <label for="password">Password</label>
-    <input disabled={notAdvanced} type="text" name="password" id="password" bind:value={sqlPassword} />
-    <button disabled={notAdvanced}>Save</button>
-  </div>
-</div>
+</section>
 
 <style>
   p {

@@ -76,14 +76,16 @@
 
   .card {
     border: none;
-    background: var(--dark-mid);
+    background: var(--dark);
     color: var(--light-mid);
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 2rem;
     padding: 2rem;
-    border-radius: 1rem;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
     transition: all 0.3s ease-out;
   }
   .card:hover {
