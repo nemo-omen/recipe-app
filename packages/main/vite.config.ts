@@ -33,6 +33,9 @@ const config = {
         entryFileNames: '[name].cjs',
       },
     },
+    commonjsOptions: {
+      dynamicRequireTargets: ['!node_modules/knex/lib/dialects/sqlite3/index.js'],
+    },
     emptyOutDir: true,
     brotliSize: false,
   },

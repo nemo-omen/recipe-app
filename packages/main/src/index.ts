@@ -2,11 +2,15 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
 import { URL } from 'url';
 import * as fs from 'fs';
+import { testDB } from './db.js';
+
 const settings = require('electron-settings');
 
 const isSingleInstance = app.requestSingleInstanceLock();
 
 const settingsPath = join(__dirname, '../../data/preferences.json');
+
+testDB();
 
 if (!isSingleInstance) {
   app.quit();
