@@ -83,14 +83,11 @@
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    padding: 2rem;
-    border-radius: 50%;
-    aspect-ratio: 1/1;
     transition: all 0.3s ease-out;
   }
   .card:hover {
-    color: var(--light);
-    background: var(--dark-light);
+    color: var(--accent-secondary);
+    /* background: var(--dark-mid); */
   }
 
   .card-welcome {
@@ -101,28 +98,16 @@
     font-size: 1.5rem;
   }
 
-  .card-flat {
-    background: var(--dark);
-    box-shadow: none;
-  }
-
-  p,
-  button {
-    font-size: 1.5rem;
-  }
-
   button {
     border: 2px solid var(--accent-secondary);
     color: var(--accent-secondary);
     background: transparent;
     padding: 0.5rem 1rem;
+    font-size: 1.5rem;
     /* border: none; */
     border-radius: 5rem;
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.2s ease-out;
-  }
-  button:hover {
-    transform: scale(1.05);
   }
 </style>

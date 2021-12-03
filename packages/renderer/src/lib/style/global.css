@@ -1,3 +1,6 @@
+/* @import 'https://unpkg.com/open-props'; */
+@import 'open-color.css';
+
 :root {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
     'Helvetica Neue', sans-serif;
@@ -6,17 +9,29 @@
 
   /* Colors */
   --dark: #010b13;
+  --dark: var(--oc-gray-9);
+
   --dark-mid: #041624;
+  --dark-mid: var(--oc-gray-8);
   --dark-light: #091f30;
+  --dark-light: var(--oc-gray-7);
   --dark-hover: #03121f;
+  --dark-hover: var(--oc-gray-9);
   --light: #f5ecec;
+  --light: var(--oc-gray-3);
   --light-mid: #ddd6d6;
+  --light-mid: var(--oc-gray-4);
   --light-dark: #c5bebe;
+  --light-dark: var(--oc-gray-5);
   --accent: #ff6347;
+  /* --accent: var(--red-7); */
   --accent-secondary: #34b5cc;
+  --accent-secondary: var(--oc-cyan-5);
   --accent-dark: #742906;
-  --accent-secondary-mid: #0b708a;
+  /* --accent-secondary-mid: #0b708a; */
+  --accent-secondary-mid: var(--oc-cyan-6);
   --accent-secondary-dark: #0c495c;
+  --accent-secondary-dark: var(--cyan-7);
 }
 
 * {
@@ -28,7 +43,7 @@ body {
   overflow: hidden;
   padding: 0;
   margin: 0;
-  background-color: var(--dark-mid);
+  background-color: var(--dark);
   color: var(--light);
 }
 
@@ -60,7 +75,7 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 0.5rem;
-  background: var(--dark-light);
+  background: var(--dark-mid);
   z-index: 300;
   /* box-shadow: 10px 5px 10px 5px rgba(0, 0, 0, 0.3); */
   border-bottom: 1px solid var(--dark);
@@ -74,7 +89,7 @@ header {
 .page {
   position: relative;
   padding-top: 3rem;
-  box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2) inset;
   height: 100%;
   /* background: var(--accent-secondary-dark); */
 }
@@ -102,7 +117,7 @@ header {
   overflow: hidden;
   /* border-right: 1px solid var(--accent-secondary-dark); */
   transition: all 0.3s ease-out;
-  background: var(--dark-light);
+  background: var(--dark-mid);
   /* box-shadow: 5px 11px 10px 5px rgba(0, 0, 0, 0.3); */
   z-index: 200;
 }
@@ -133,7 +148,7 @@ header {
 .icon-button:hover,
 .current {
   color: var(--accent-secondary);
-  background-color: var(--dark-hover);
+  background-color: var(--dark);
 }
 
 .icon-button .button-label {
@@ -142,7 +157,7 @@ header {
 
 .sub-header {
   /* border-bottom: 1px solid var(--accent-secondary-dark); */
-  background: var(--dark-light);
+  background: var(--dark-mid);
   min-height: 3rem;
   max-height: 3rem;
 }
@@ -155,10 +170,10 @@ header {
   /* width: 100%; */
   display: flex;
   justify-content: space-between;
-  box-shadow: 2px 2px 10px 5px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 2px 2px 10px 5px rgba(0, 0, 0, 0.2); */
   /* border-bottom: 1px solid var(--accent-secondary-dark); */
   /* border-top: 1px solid var(--accent-secondary-dark); */
-  background: var(--dark-light);
+  background: var(--dark-mid);
   border-left: 1px solid var(--dark);
 }
 

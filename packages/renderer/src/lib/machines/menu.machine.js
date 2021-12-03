@@ -20,6 +20,7 @@ const menuMachine = createMachine(
             actions: assign({
               currentMenu: (context, event) => (context.currentMenu = event?.key),
             }),
+            target: 'collapsed',
           },
         },
       },
@@ -42,6 +43,7 @@ const menuMachine = createMachine(
             actions: assign({
               currentMenu: (context, event) => (context.currentMenu = event?.key),
             }),
+            target: 'collapsed',
           },
         },
       },

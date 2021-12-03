@@ -15,7 +15,7 @@
   $: current = $menuService.context.currentMenu;
 
   function sendToMain() {
-    // window.electron.getData({ id: 456 });
+    menuService.send({ type: 'GO', key: 'welcome' });
   }
 
   // window.electron.fromMain('something', (event, data) => {
@@ -49,6 +49,8 @@
       <Settings />
     {:else if $menuService.context.currentMenu === 'postrecipe'}
       <PostRecipe />
+    {:else if $menuService.context.currentMenu === 'welcome'}
+      <Welcome />
     {:else}
       <Welcome />
     {/if}
@@ -56,4 +58,7 @@
 </section>
 
 <style>
+  #brand {
+    cursor: pointer;
+  }
 </style>

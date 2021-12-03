@@ -12,10 +12,7 @@
 </script>
 
 <aside id="sidebar" class={$menuService.matches('expanded') ? 'expanded' : 'collapsed'}>
-  <button
-    class="icon-button sub-header {current === 'postrecipe' ? 'current' : ''}"
-    on:click={() => toggleMenu('postrecipe')}
-  >
+  <button class="icon-button {current === 'postrecipe' ? 'current' : ''}" on:click={() => toggleMenu('postrecipe')}>
     <Icon name="add" /> <span class="button-label">New Recipe</span>
   </button>
 
