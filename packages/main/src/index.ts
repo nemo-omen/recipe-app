@@ -2,7 +2,7 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
 import { URL } from 'url';
 import * as fs from 'fs';
-import { testDB } from './db.js';
+import { RecipeService } from './services/recipes.service.js';
 
 const settings = require('electron-settings');
 
@@ -10,7 +10,9 @@ const isSingleInstance = app.requestSingleInstanceLock();
 
 const settingsPath = join(__dirname, '../../data/preferences.json');
 
-testDB();
+let allRecipes = RecipeService.getAll();
+
+console.log(allRecipes);
 
 if (!isSingleInstance) {
   app.quit();
