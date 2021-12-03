@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "electron-settings": "^4.0.2",
+    "knex": "^0.95.14",
     "open-props": "^1.0.8",
     "sqlite3": "^5.0.2",
     "svelte": "^3.37.0",
