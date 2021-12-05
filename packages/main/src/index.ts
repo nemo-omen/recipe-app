@@ -1,18 +1,16 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
 import { URL } from 'url';
-import * as fs from 'fs';
-import { RecipeService } from './services/recipes.service.js';
-
-const settings = require('electron-settings');
+import 'reflect-metadata';
+import Database from './database/Database.ts';
 
 const isSingleInstance = app.requestSingleInstanceLock();
 
-const settingsPath = join(__dirname, '../../data/preferences.json');
+export const defaultStorageFolder = app.getPath('userData');
 
-let allRecipes = RecipeService.getAll();
+console.log(defaultStorageFolder);
 
-console.log(allRecipes);
+const database = new Database();
 
 if (!isSingleInstance) {
   app.quit();
@@ -32,7 +30,7 @@ const createWindow = async () => {
     webPreferences: {
       nativeWindowOpen: true,
       preload: join(__dirname, '../../preload/dist/index.cjs'),
-      nodeIntegration: false,
+      nodeIntegration: true,
       contextIsolation: true,
       enableRemoteModule: true,
     },
@@ -105,15 +103,15 @@ if (import.meta.env.PROD) {
 
 // IPC Events
 
-ipcMain.on('getUserSettings', (event) => {
-  const userSettings = settings.getSync('userSettings');
-  console.log('userSettings: ', userSettings);
-  event.sender.send('userSettingsResponse', { userSettings });
-});
+// ipcMain.on('getUserSettings', (event) => {
+//   const userSettings = settings.getSync('userSettings');
+//   console.log('userSettings: ', userSettings);
+//   event.sender.send('userSettingsResponse', { userSettings });
+// });
 
-ipcMain.on('setUserSettings', (event, key, value) => {
-  const data = { key, value };
-  console.log('recieved userData: ', data);
-  settings.setSync(key, value);
-  console.log('settings dbMode: ', settings.getSync('dbMode'));
-});
+// ipcMain.on('setUserSettings', (event, key, value) => {
+//   const data = { key, value };
+//   console.log('recieved userData: ', data);
+//   settings.setSync(key, value);
+//   console.log('settings dbMode: ', settings.getSync('dbMode'));
+// });
